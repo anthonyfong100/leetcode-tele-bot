@@ -15,8 +15,10 @@ def get_daily_problem_url(dt: datetime.datetime) -> str:
     week_id = get_explore_week_id(dt)
     week_string = get_week_string(dt)
     problem_id = get_explore_problem_id(dt)
-    website_url = f"https://leetcode.com/explore/featured/card/{month}"
-    f"-leetcoding-challenge-{dt.year}/{week_id}/{week_string}/{problem_id}/"
+    website_url = (
+        f"https://leetcode.com/explore/featured/card/{month}"
+        f"-leetcoding-challenge-{dt.year}/{week_id}/{week_string}/{problem_id}/"
+    )
     return website_url
 
 

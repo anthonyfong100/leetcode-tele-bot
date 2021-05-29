@@ -3,8 +3,12 @@ import math
 from calendar import monthrange
 from typing import Tuple
 
-import leetcode_tele_bot.leetcode_api.constants as constants
-from leetcode_tele_bot.leetcode_api.models import Month
+import leetcode_tele_bot.service.constants as constants
+from leetcode_tele_bot.service.models import Month
+
+
+def get_curr_datetime() -> datetime.datetime:
+    return datetime.datetime.now(datetime.timezone.utc)
 
 
 def get_today_date() -> Tuple[int]:

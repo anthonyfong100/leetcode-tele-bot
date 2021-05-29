@@ -1,6 +1,9 @@
 init:
 	pipenv install -d
 
+dev:
+	uvicorn main:app --reload
+
 test:
 	pytest -v
 

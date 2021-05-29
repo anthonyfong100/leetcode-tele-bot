@@ -12,6 +12,9 @@ pytest = "*"
 pytest-cov = "*"
 
 [packages]
+fastapi = "*"
+python-dotenv = "*"
+uvicorn = "*"
 
 [requires]
 python_version = "3.7"

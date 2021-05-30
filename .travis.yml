@@ -6,7 +6,7 @@ python:
   - "3.6"
 
 install:
-  - pip install pipenv
+  - pip install pipenv codecov
   - pipenv install -d
 
 env:

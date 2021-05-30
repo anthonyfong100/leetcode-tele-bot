@@ -1,6 +1,6 @@
 import datetime
 
-from leetcode_tele_bot.leetcode_api.date_utils import (
+from leetcode_tele_bot.service.date_utils import (
     get_problem_offset_from_start,
     get_week_in_month,
     get_week_offset_from_start,
@@ -42,10 +42,24 @@ def test_get_week_offset_from_start():
 
 def test_get_problem_offset_from_start():
     jan_1_2021 = datetime.datetime(2021, 1, 1, tzinfo=datetime.timezone.utc)
-    assert get_problem_offset_from_start(jan_1_2021) == 1
+    assert get_problem_offset_from_start(jan_1_2021) == 0
 
-    jan_7_2021 = datetime.datetime(2021, 1, 7, tzinfo=datetime.timezone.utc)
+    jan_1_2021_hr_7 = datetime.datetime(
+        2021, 1, 1, hour=7, tzinfo=datetime.timezone.utc
+    )
+    assert get_problem_offset_from_start(jan_1_2021_hr_7) == 1
+
+    jan_1_2021_hr_12 = datetime.datetime(
+        2021, 1, 1, hour=12, tzinfo=datetime.timezone.utc
+    )
+    assert get_problem_offset_from_start(jan_1_2021_hr_12) == 1
+
+    jan_7_2021 = datetime.datetime(
+        2021, 1, 7, hour=12, tzinfo=datetime.timezone.utc
+    )
     assert get_problem_offset_from_start(jan_7_2021) == 7
 
-    feb_1_2021 = datetime.datetime(2021, 2, 1, tzinfo=datetime.timezone.utc)
+    feb_1_2021 = datetime.datetime(
+        2021, 2, 1, hour=12, tzinfo=datetime.timezone.utc
+    )
     assert get_problem_offset_from_start(feb_1_2021) == 37

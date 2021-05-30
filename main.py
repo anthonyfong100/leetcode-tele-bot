@@ -1,14 +1,16 @@
-import uvicorn
-from fastapi import FastAPI
+import logging
 
-from leetcode_tele_bot.routes import tele_bot_router
+import telebot
 
-app = FastAPI(
-    docs_url="/api/docs",
-    openapi_url="/api/openapi.json",
-    redoc_url=None,
-)
-app.include_router(tele_bot_router, prefix="/api")
+import config  # load the config
+from leetcode_tele_bot.api.telegram import TelegramApiClient
+from leetcode_tele_bot.listeners import all_listeners, register_listeners
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8888)
+    import leetcode_tele_bot.routes  # need to import this to load the routes
+
+    logger = telebot.logger
+    telebot.logger.setLevel(logging.INFO)  # Outputs debug messages to console.
+
+    register_listeners(TelegramApiClient, all_listeners)
+    TelegramApiClient.infinity_polling()  # hand exce

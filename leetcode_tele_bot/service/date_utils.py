@@ -45,6 +45,8 @@ def get_problem_offset_from_start(curr_date: datetime.datetime) -> int:
     problem_offset = days_offset + get_week_offset_from_start(
         curr_date
     )  # additional weekly problem
+    if curr_date.hour < 7:
+        problem_offset -= 1  # new problem is released after 7am UTC
     return problem_offset + 1  # first problem of week is weekly problem
 
 

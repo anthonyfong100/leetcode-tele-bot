@@ -10,6 +10,10 @@ from leetcode_tele_bot.service.date_utils import (
 )
 
 
+def get_curr_datetime() -> datetime.datetime:
+    return datetime.datetime.now(datetime.timezone.utc)
+
+
 def get_daily_problem_url(dt: datetime.datetime) -> str:
     month: str = models.Month(dt.month).name.lower()
     week_id = get_explore_week_id(dt)

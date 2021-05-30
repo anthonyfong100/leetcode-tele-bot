@@ -34,9 +34,11 @@ jobs:
           make coverage
         env: 
           LOGGING_LEVEL: 10
+          TELEBOT_TOKEN: ${{ secrets.TELEBOT_TOKEN }}
       - name: Code coverage
         uses: codecov/codecov-action@v1
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
           name: codecov-umbrella 
           fail_ci_if_error: true 

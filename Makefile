@@ -11,7 +11,7 @@ test:
 	pipenv run pytest -s -v
 
 coverage:
-	pipenv run pytest -v --cov=./ tests/
+	pipenv run pytest -v --cov=./ tests/ --cov-report=xml
 
 docker-build:
 	docker build -t leetcode-tele-bot .

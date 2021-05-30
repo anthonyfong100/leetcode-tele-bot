@@ -37,7 +37,7 @@ jobs:
       - name: Code coverage
         uses: codecov/codecov-action@v1
         with:
-          files: ./coverage
+          files: ./coverage.xml
           name: codecov-umbrella 
           fail_ci_if_error: true 
           verbose: true

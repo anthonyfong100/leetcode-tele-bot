@@ -1,14 +1,22 @@
+# Disable sudo to speed up the build
+sudo: false
+
 language: python
 python:
   - "3.6"
+
+install:
+  - pip install pipenv
+  - pipenv install
+
 jobs:
     include:
-      - stage: test
+      - stage: unit test
         script:
-          - pip install pipenv
-          - pipenv install
           - make test
-
+      - stage: code coverage
+        script:
+          - make coverage
 env:
   - LOGGING_LEVEL=10
   - TELEBOT_TOKEN=1879950939:AAFj3ZbBEYPEzAHQCLdE30Mw7vahbpfYaYQ

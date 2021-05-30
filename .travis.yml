@@ -8,3 +8,7 @@ jobs:
           - pip install pipenv
           - pipenv install
           - make test
+
+env:
+  - LOGGING_LEVEL=10
+  - TELEBOT_TOKEN=1879950939:AAFj3ZbBEYPEzAHQCLdE30Mw7vahbpfYaYQ

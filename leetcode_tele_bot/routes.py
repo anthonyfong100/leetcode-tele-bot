@@ -1,17 +1,12 @@
+import leetcode_tele_bot.handlers as handlers
 from leetcode_tele_bot.api.telegram import TelegramApiClient
-from leetcode_tele_bot.handlers.leetcode import push_daily_leetcode_message
 
 
 @TelegramApiClient.message_handler(commands=["get_question"])
 def daily_problem(message) -> None:
-    push_daily_leetcode_message()
+    handlers.leetcode.push_daily_leetcode_message()
 
 
-@TelegramApiClient.message_handler(commands=["start", "help"])
+@TelegramApiClient.message_handler(commands=["start"])
 def send_welcome(message):
-    TelegramApiClient.reply_to(message, "Howdy, how are you doing?")
-
-
-@TelegramApiClient.message_handler(func=lambda m: True)
-def echo_message(message):
-    TelegramApiClient.reply_to(message, message.text)
+    handlers.telebot.send_welcome(message)

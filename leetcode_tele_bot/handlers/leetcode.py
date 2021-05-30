@@ -1,5 +1,6 @@
 import os
 
+from leetcode_tele_bot import logger
 from leetcode_tele_bot.api.telegram import TelegramApiClient
 from leetcode_tele_bot.service.leetcode_url_generator import (
     get_curr_datetime,
@@ -7,10 +8,9 @@ from leetcode_tele_bot.service.leetcode_url_generator import (
 )
 
 
-def push_daily_leetcode_message():
+def push_daily_leetcode_message(message):
     curr_time = get_curr_datetime()
+    chat_id = message.chat.id
     leetcode_problem_url = get_daily_problem_url(curr_time)
-    message = TelegramApiClient.send_message(
-        os.getenv("SECRET_CACHE"), leetcode_problem_url
-    )
-    print(f"message is {message}")
+    message = TelegramApiClient.send_message(chat_id, leetcode_problem_url)
+    logger.info(f"message from push_daily_leetcode_message is: {message}")

@@ -4,7 +4,7 @@ from leetcode_tele_bot.api.telegram import TelegramApiClient
 
 @TelegramApiClient.message_handler(commands=["get_question"])
 def daily_problem(message) -> None:
-    handlers.leetcode.push_daily_leetcode_message()
+    handlers.leetcode.push_daily_leetcode_message(message)
 
 
 @TelegramApiClient.message_handler(commands=["start"])

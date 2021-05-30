@@ -1,17 +1,17 @@
-import logging
 from typing import Callable, List
 
 import telebot
 
+from leetcode_tele_bot import logger
 
-def logger_listener(messages):
+
+def logger_listener(message):
     """
     When new messages arrive TeleBot will call this function.
     """
-    for m in messages:
-        if m.content_type == "text":
-            # print the sent message to the console
-            logging.info(f"{m.chat.first_name} [{m.chat.id}]: {m.text}")
+    for m in message:
+        print("logger called")
+        logger.info(f"[{m.chat.id}]: {m.text}")
 
 
 all_listeners = [logger_listener]

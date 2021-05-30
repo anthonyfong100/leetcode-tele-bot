@@ -9,4 +9,4 @@ COPY . ./leetcode-tele-bot-service
 WORKDIR /leetcode-tele-bot-service
 EXPOSE 8888
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8888"]
+CMD ["python", "main.py", "--env", "dev"]

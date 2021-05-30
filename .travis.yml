@@ -6,4 +6,5 @@ jobs:
       - stage: test
         script:
           - pip install pipenv
+          - pipenv install
           - make test

@@ -8,7 +8,7 @@ prod:
 	python main.py --env prod
 
 test:
-	pipenv run pytest -v
+	pipenv run pytest -s -v
 
 coverage:
 	pipenv run pytest -v --cov=leetcode_tele_bot 

@@ -11,6 +11,6 @@ def push_daily_leetcode_message():
     curr_time = get_curr_datetime()
     leetcode_problem_url = get_daily_problem_url(curr_time)
     message = TelegramApiClient.send_message(
-        os.getenv("secret_cache"), leetcode_problem_url
+        os.getenv("SECRET_CACHE"), leetcode_problem_url
     )
     print(f"message is {message}")

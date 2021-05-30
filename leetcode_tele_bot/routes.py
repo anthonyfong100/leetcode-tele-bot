@@ -10,7 +10,6 @@ def daily_problem(message) -> None:
 @TelegramApiClient.message_handler(commands=["start", "help"])
 def send_welcome(message):
     TelegramApiClient.reply_to(message, "Howdy, how are you doing?")
-    raise Exception("simulate panic")
 
 
 @TelegramApiClient.message_handler(func=lambda m: True)

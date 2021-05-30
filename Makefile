@@ -8,10 +8,10 @@ prod:
 	python main.py --env prod
 
 test:
-	pytest -v
+	pipenv run pytest -v
 
 coverage:
-	pytest -v --cov=leetcode_tele_bot 
+	pipenv run pytest -v --cov=leetcode_tele_bot 
 
 docker-build:
 	docker build -t leetcode-tele-bot .

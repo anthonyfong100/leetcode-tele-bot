@@ -2,7 +2,7 @@ from typing import Callable, List
 
 import telebot
 
-from leetcode_tele_bot import logger
+import leetcode_tele_bot.logger as logger
 
 
 def logger_listener(message):
@@ -11,7 +11,7 @@ def logger_listener(message):
     """
     for m in message:
         print("logger called")
-        logger.info(f"[{m.chat.id}]: {m.text}")
+        logger.get_logger().info(f"[{m.chat.id}]: {m.text}")
 
 
 all_listeners = [logger_listener]

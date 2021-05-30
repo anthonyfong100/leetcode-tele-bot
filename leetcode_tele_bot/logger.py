@@ -3,10 +3,16 @@ import os
 
 import telebot
 
+logger_client = None
+
 
 def InitLogger():
-    logger = telebot.logger
+    global logger_client
+    logger_client = telebot.logger
     telebot.logger.setLevel(
         int(os.getenv("LOGGING_LEVEL"))
     )  # Outputs debug messages to console.
-    return logger
+
+
+def get_logger() -> logging.Logger:
+    return logger_client

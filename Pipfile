@@ -12,9 +12,7 @@ pytest = "*"
 pytest-cov = "*"
 
 [packages]
-fastapi = "*"
 python-dotenv = "*"
-uvicorn = "*"
 pytelegrambotapi = "*"
 
 [requires]

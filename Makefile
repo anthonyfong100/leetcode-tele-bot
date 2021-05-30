@@ -2,11 +2,10 @@ init:
 	pipenv install -d
 
 dev:
-	# uvicorn main:app --reload --port 8888
-	python main.py
+	python main.py --env dev
 
 prod:
-	uvicorn main:app --host 0.0.0.0 --port 8888
+	python main.py --env prod
 
 test:
 	pytest -v

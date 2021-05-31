@@ -1,0 +1,49 @@
+name: Build and test
+on:
+  push:
+    branches:
+      - main
+      - releases/*
+
+
+jobs:
+  build:
+    name: Build and push to docker hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Authenticate with DigitalOcean Container Registry
+        run: doctl registry login --expiry-seconds 180
+      - name: Build and Push to DigitalOcean Container Registry
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: |
+            registry.digitalocean.com/anthonyfong97/leetcode-tele-bot:latest
+            registry.digitalocean.com/anthonyfong97/leetcode-tele-bot:sha-${{ github.sha }}
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2 
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Provision Droplet and deploy containers
+        run: doctl compute droplet create --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region sgp1 --user-data-file /scripts/digital_ocean_deploy.sh --wait

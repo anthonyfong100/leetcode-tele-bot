@@ -1,14 +1,9 @@
 name: Build and test
 on:
   pull_request:
-  push:
-    branches:
-      - main
-      - releases/*
-
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code

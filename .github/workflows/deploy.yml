@@ -27,8 +27,6 @@ jobs:
           tags: |
             registry.digitalocean.com/anthonyfong97/leetcode-tele-bot:latest
             registry.digitalocean.com/anthonyfong97/leetcode-tele-bot:sha-${{ github.sha }}
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -40,4 +38,4 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Provision Droplet and deploy containers
-        run: doctl compute droplet create ${{ github.sha }} --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region sgp1 --user-data-file /scripts/digital_ocean_deploy.sh --wait
+        run: doctl compute droplet create ${{ github.sha }} --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region sgp1 --user-data-file ./scripts/digital_ocean_deploy.sh --wait

@@ -38,9 +38,9 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Update deployment file
-        run: sed -i 's/TOKEN_NAME/'${${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}}'/g' digital_ocean_deploy.sh
+        run: ACCESS_TOKEN=${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} && sed -i 's/TOKEN_NAME/'${ACCESS_TOKEN}'/g' digital_ocean_deploy.sh
       - name: Delete previous Droplet 
         continue-on-error: true
-        run: doctl compute droplet delete leetcode-tele-bot 
+        run: doctl compute droplet delete leetcode-tele-bot --force
       - name: Provision Droplet and deploy containers
         run: doctl compute droplet create leetcode-tele-bot --image docker-20-04 --size s-1vcpu-1gb --region sgp1 --user-data-file digital_ocean_deploy.sh  --access-token ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} --wait

@@ -40,4 +40,4 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Provision Droplet and deploy containers
-        run: doctl compute droplet create --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region sgp1 --user-data-file /scripts/digital_ocean_deploy.sh --wait
+        run: doctl compute droplet create ${{ github.sha }} --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region sgp1 --user-data-file /scripts/digital_ocean_deploy.sh --wait

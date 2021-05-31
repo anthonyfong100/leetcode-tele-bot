@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo snap install doctl
 doctl registry login --expiry-seconds 180
 docker pull registry.digitalocean.com/anthonyfong97/leetcode-tele-bot:latest

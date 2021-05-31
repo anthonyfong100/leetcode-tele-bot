@@ -1,7 +1,11 @@
 #!/bin/bash
 
-sudo snap install doctl
-doctl auth init --access-token TOKEN_NAME
+cd ~
+wget https://github.com/digitalocean/doctl/releases/download/v1.60.0/doctl-1.60.0-linux-amd64.tar.gzdoctl auth init --access-token TOKEN_NAME
+tar xf ~/doctl-1.60.0-linux-amd64.tar.gz
+sudo mv ~/doctl /usr/local/bin
+
+
 doctl registry login --expiry-seconds 180 --access-token TOKEN_NAME
 docker pull registry.digitalocean.com/anthonyfong97/leetcode-tele-bot:latest
 

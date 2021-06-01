@@ -5,7 +5,6 @@ on:
       - main
       - releases/*
 
-
 jobs:
   build:
     name: Build and push to docker hub
@@ -17,16 +16,12 @@ jobs:
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - name: Authenticate with DigitalOcean Container Registry
-        run: doctl registry login --expiry-seconds 180
-      - name: Build and Push to DigitalOcean Container Registry
+      - name: Build and Push to Docker Registry
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: |
-            registry.digitalocean.com/anthonyfong97/leetcode-tele-bot:latest
-            registry.digitalocean.com/anthonyfong97/leetcode-tele-bot:sha-${{ github.sha }}
+          tags: anthonyfong/leetcode-tele-bot:latest
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -38,9 +33,11 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Update deployment file
-        run: ACCESS_TOKEN=${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} && sed -i 's/TOKEN_NAME/'${ACCESS_TOKEN}'/g' digital_ocean_deploy.sh
+        run: |
+          DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} && sed -i 's/DOCKER_USERNAME/'${DOCKER_USERNAME}'/g' digital_ocean_deploy.sh
+          DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }} && sed -i 's/DOCKER_PASSWORD/'${DOCKER_PASSWORD}'/g' digital_ocean_deploy.sh
       - name: Delete previous Droplet 
         continue-on-error: true
         run: doctl compute droplet delete leetcode-tele-bot --force
       - name: Provision Droplet and deploy containers
-        run: doctl compute droplet create leetcode-tele-bot --image docker-20-04 --size s-1vcpu-1gb --region sgp1 --user-data-file digital_ocean_deploy.sh  --access-token ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} --wait
+        run: doctl compute droplet create leetcode-tele-bot --image docker-20-04 --size s-1vcpu-1gb --region sgp1 --user-data-file digital_ocean_deploy.sh  --access-token ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} --wait --ssh-keys ${{ secrets.SSH_KEY }}

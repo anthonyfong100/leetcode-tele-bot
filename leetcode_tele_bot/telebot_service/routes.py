@@ -1,5 +1,5 @@
-import leetcode_tele_bot.handlers as handlers
-from leetcode_tele_bot.api.telegram import TelegramApiClient
+import leetcode_tele_bot.telebot_service.handlers as handlers
+from leetcode_tele_bot.telebot_service.api.telegram import TelegramApiClient
 
 
 @TelegramApiClient.message_handler(commands=["get_question"])

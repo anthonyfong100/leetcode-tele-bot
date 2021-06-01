@@ -2,10 +2,10 @@ init:
 	pipenv install -d
 
 dev:
-	python main.py --env dev
+	python telebot_main.py --env dev
 
 prod:
-	python main.py --env prod
+	python telebot_main.py --env prod
 
 test:
 	pipenv run pytest -s -v

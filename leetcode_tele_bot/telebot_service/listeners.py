@@ -1,8 +1,7 @@
 from typing import Callable, List
 
+import leetcode_tele_bot.telebot_service.logger as logger
 import telebot
-
-import leetcode_tele_bot.logger as logger
 
 
 def logger_listener(message):

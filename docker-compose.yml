@@ -1,0 +1,8 @@
+version: "3"
+services:
+  telebot-svc:
+    build:
+      context: .
+      dockerfile: ./docker/telebot/Dockerfile
+    env_file: ./dev.env
+    restart: "always"

@@ -3,8 +3,8 @@ import math
 from calendar import monthrange
 from typing import Tuple
 
-import leetcode_tele_bot.service.constants as constants
-from leetcode_tele_bot.service.models import Month
+import leetcode_tele_bot.common.constants as constants
+from leetcode_tele_bot.common.models import Month
 
 
 def get_curr_datetime() -> datetime.datetime:

@@ -1,6 +1,6 @@
 import datetime
 
-from leetcode_tele_bot.service.models import Month
+from leetcode_tele_bot.common.models import Month
 
 # 2021/01/01 UTC time
 START_DATETIME = datetime.datetime(2021, 1, 1, tzinfo=datetime.timezone.utc)

@@ -1,4 +1,4 @@
-from leetcode_tele_bot.api.telegram import TelegramApiClient
+from leetcode_tele_bot.telebot_service.api.telegram import TelegramApiClient
 
 
 def send_welcome(message):

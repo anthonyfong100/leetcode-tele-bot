@@ -1,11 +1,11 @@
 import os
 
-import leetcode_tele_bot.logger as logger
-from leetcode_tele_bot.api.telegram import TelegramApiClient
-from leetcode_tele_bot.service.leetcode_url_generator import (
+import leetcode_tele_bot.telebot_service.logger as logger
+from leetcode_tele_bot.common.leetcode_url_generator import (
     get_curr_datetime,
     get_daily_problem_url,
 )
+from leetcode_tele_bot.telebot_service.api.telegram import TelegramApiClient
 
 
 def push_daily_leetcode_message(message):

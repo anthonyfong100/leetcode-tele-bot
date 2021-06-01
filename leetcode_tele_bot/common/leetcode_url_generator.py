@@ -1,8 +1,8 @@
 import datetime
 
-import leetcode_tele_bot.service.constants as constants
-import leetcode_tele_bot.service.models as models
-from leetcode_tele_bot.service.date_utils import (
+import leetcode_tele_bot.common.constants as constants
+import leetcode_tele_bot.common.models as models
+from leetcode_tele_bot.common.date_utils import (
     get_num_days_in_month,
     get_problem_offset_from_start,
     get_week_in_month,

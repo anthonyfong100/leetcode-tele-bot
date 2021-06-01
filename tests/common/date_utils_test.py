@@ -1,6 +1,6 @@
 import datetime
 
-from leetcode_tele_bot.service.date_utils import (
+from leetcode_tele_bot.common.date_utils import (
     get_problem_offset_from_start,
     get_week_in_month,
     get_week_offset_from_start,

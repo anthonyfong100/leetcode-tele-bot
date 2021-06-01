@@ -1,6 +1,6 @@
 import datetime
 
-from leetcode_tele_bot.service.leetcode_url_generator import (
+from leetcode_tele_bot.common.leetcode_url_generator import (
     get_daily_problem_url,
 )
 

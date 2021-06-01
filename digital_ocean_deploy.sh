@@ -12,4 +12,5 @@ docker run -d \
   --restart always \
   -p 0.0.0.0:80:80 \
   --name leetcode-tele-bot \
+  --env-file prod.env \
   anthonyfong/leetcode-tele-bot:latest

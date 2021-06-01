@@ -17,7 +17,7 @@ docker-build:
 	docker build -t leetcode-tele-bot .
 
 docker-dev: docker-build
-	docker run --name leetcode-tele-bot -p 8888:8888 leetcode-tele-bot
+	docker run --name leetcode-tele-bot -p 8888:8888 --env-file dev.env leetcode-tele-bot 
 
 docker-down:
 	docker rm leetcode-tele-bot

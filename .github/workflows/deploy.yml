@@ -41,6 +41,9 @@ jobs:
         run: |
           DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} && sed -i 's/DOCKER_USERNAME/'${DOCKER_USERNAME}'/g' digital_ocean_deploy.sh
           DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }} && sed -i 's/DOCKER_PASSWORD/'${DOCKER_PASSWORD}'/g' digital_ocean_deploy.sh
+      - name: Update env file
+        run: |
+          TELEBOT_TOKEN=${{ secrets.TELEBOT_TOKEN }} && echo "\nTELEBOT_TOKEN=${TELEBOT_TOKEN}" >> prod.env
       - name: Delete previous Droplet 
         continue-on-error: true
         run: doctl compute droplet delete leetcode-tele-bot --force

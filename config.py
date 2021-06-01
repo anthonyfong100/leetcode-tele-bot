@@ -1,4 +1,5 @@
 import argparse
+import os
 
 from dotenv import load_dotenv
 
@@ -13,8 +14,8 @@ parser.add_argument(
 args = parser.parse_args()
 
 if args.env.lower() == "prod":
-    print("loading env variable from .prod.env")
-    load_dotenv(verbose=True, dotenv_path=".prod.env")
+    print("loading env variable from prod.env")
+    load_dotenv(verbose=True, dotenv_path="prod.env")
 else:
-    print("loading env variable from .dev.env")
-    load_dotenv(verbose=True, dotenv_path=".dev.env")
+    print("loading env variable from dev.env")
+    load_dotenv(verbose=True, dotenv_path="dev.env")

@@ -31,11 +31,15 @@ jobs:
           cd services/telegram_svc && make 
           poetry install
           make test
+      - name: Combine coverage
+        run: |
+          pip install coverage
+          coverage combine libs/common/.coverage services/telebot_backend_svc/.coverage services/telegram_svc/.coverage
       - name: Code coverage
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml
+          files: ./.coverage
           name: codecov-umbrella 
           fail_ci_if_error: true 
           verbose: true

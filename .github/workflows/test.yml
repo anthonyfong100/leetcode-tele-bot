@@ -20,7 +20,7 @@ jobs:
           poetry-version: 1.1.6
       - name: Test commons lib
         run: |
-          cd libs/common && make && poetry install && make test
+          cd libs/common && poetry install && make test
       - name: Test telebot backend service
         run: |
           cd services/telebot_backend_svc && make

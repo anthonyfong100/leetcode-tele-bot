@@ -25,11 +25,13 @@ jobs:
         run: |
           cd services/telebot_backend_svc && make
           poetry run pip install ./dist/**/*.whl
+          poetry add pytest pytest-cov
           make test
       - name: Test telegram service
         run: |
           cd services/telegram_svc && make 
           poetry run pip install ./dist/**/*.whl
+          poetry add pytest pytest-cov
           make test
       - name: Code coverage
         uses: codecov/codecov-action@v1

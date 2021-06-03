@@ -20,19 +20,16 @@ jobs:
           poetry-version: 1.1.6
       - name: Test commons lib
         run: |
-          cd libs/common && poetry install && make test
+          cd libs/common && make && poetry install && make test
       - name: Test telebot backend service
         run: |
           cd services/telebot_backend_svc && make
           poetry run pip install ./dist/**/*.whl
-          poetry add -D pytest pytest-cov
-          echo "reached here"
           make test
       - name: Test telegram service
         run: |
           cd services/telegram_svc && make 
           poetry run pip install ./dist/**/*.whl
-          poetry add -D pytest pytest-cov
           make test
       - name: Code coverage
         uses: codecov/codecov-action@v1

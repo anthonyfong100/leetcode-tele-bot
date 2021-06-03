@@ -16,19 +16,18 @@ jobs:
         uses: abatilo/actions-poetry@v2.0.0
         with:
           poetry-version: 1.1.6
-      - name: Build artifacts
-        run: |
-          make 
       - name: Test commons lib
         run: |
           cd libs/common && poetry install && poetry run pytest
       - name: Test telebot backend service
         run: |
-          cd services/telebot_backend_svc && poetry run pip install ./dist/**/*../dist/**/*.whl
+          cd services/telebot_backend_svc && make
+          poetry run pip install ./dist/**/*../dist/**/*.whl
           poetry run pytest
       - name: Test telebot backend service
         run: |
-          cd services/telegram_svc && poetry run pip install ./dist/**/*../dist/**/*.whl
+          cd services/telegram_svc && make 
+          poetry run pip install ./dist/**/*../dist/**/*.whl
           poetry run pytest
       - name: Code coverage
         uses: codecov/codecov-action@v1

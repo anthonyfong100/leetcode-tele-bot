@@ -19,14 +19,17 @@ jobs:
       - name: Test commons lib
         run: |
           cd libs/common && poetry install && poetry run pytest
-      - name: Test telebot backend service
+      - name: telebot backend service
         run: |
           cd services/telebot_backend_svc && make
+          poetry install
           poetry run pip install ./dist/**/*.whl
+          echo "reached here"
           poetry run pytest
-      - name: Test telebot backend service
+      - name: Test telegram service
         run: |
           cd services/telegram_svc && make 
+          poetry install
           poetry run pip install ./dist/**/*.whl
           poetry run pytest
       - name: Code coverage

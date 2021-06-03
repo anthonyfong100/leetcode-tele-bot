@@ -1,8 +1,19 @@
-version: "3"
+version: "3.9"
 services:
-  telebot-svc:
+  telegram-svc:
     build:
-      context: .
-      dockerfile: ./docker/telebot/Dockerfile
+      context: ./services/telegram_svc
+      dockerfile: ./Dockerfile
     env_file: ./dev.env
     restart: "always"
+    profiles:
+      - donotstart
+
+  telebot-backend-svc:
+    build:
+      context: ./services/telebot_backend_svc
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    restart: "always"
+  

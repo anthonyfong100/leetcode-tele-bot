@@ -1,6 +1,8 @@
 version: "3.9"
 services:
   telegram-svc:
+    image:
+      anthonyfong/telegram-svc:latest
     build:
       context: ./services/telegram_svc
       dockerfile: ./Dockerfile
@@ -8,9 +10,8 @@ services:
     restart: "always"
 
   telebot-backend-svc:
-    build:
-      context: ./services/telebot_backend_svc
-      dockerfile: ./Dockerfile
+    image:
+      anthonyfong/telebot-backend-svc:latest
     ports:
       - "8000:8000"
     restart: "always"
